@@ -31,6 +31,7 @@
 <script>
 
 import api from "@/services/api";
+import router from "@/router";
 export default {
     name: "AdicionaMoradores",
     data () {
@@ -53,7 +54,9 @@ export default {
                 .then(response => {
                     console.log(response)
                 });
-            location.replace("/moradores")
+           router.replace({ name: 'moradores' })
+           location.reload()
+
         }
     }
 }

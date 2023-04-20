@@ -65,7 +65,10 @@ export default {
                 .then(response => {
                     console.log(response)
                 });
-            router.push({name: "moradores"})
+            router.replace({name: "moradores"})
+            location.reload()
+
+
         },
         voltar() {
             router.push({name: "moradores"})

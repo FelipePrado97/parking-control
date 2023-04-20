@@ -1,7 +1,8 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light bg-opacity-80 ">
         <button class="btn btn-light" @click="listar">Listar Moradores</button>
         <button class="btn btn-light" @click="cadastrar">Cadastrar Moradores</button>
+        <button class="btn btn-danger" @click="logout">Logout</button>
     </nav>
        <div v-show="ativarLista"><ListaMoradores/></div>
         <div v-show="ativarAdicionar"><AdicionaMoradores /></div>
@@ -37,7 +38,11 @@ export default {
         cadastrar() {
             this.ativarAdicionar = !this.ativarAdicionar
             this.ativarLista = false
-        }
+        },
+        logout() {
+            localStorage.removeItem('credentials');
+            this.$router.push('/');
+        },
     }
 }
 </script>
