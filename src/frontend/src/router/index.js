@@ -4,6 +4,7 @@ import Moradores from "@/views/Moradores.vue";
 import EditarMorador from "@/components/EditarMorador.vue";
 import AdicionaMoradores from "@/components/AdicionaMoradores.vue";
 import LoginPage from "@/views/LoginPage.vue";
+import Form from "@/views/Form.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +18,12 @@ const router = createRouter({
       path: '/moradores',
       name: 'moradores',
       component: Moradores,
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: Form,
       beforeEnter: requireAuth
     },
     {

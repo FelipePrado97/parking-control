@@ -81,23 +81,32 @@ export default {
 
     },
     mounted() {
-        api.get("http://localhost:8080/parking-spot/").then(response => {
+        api.get("").then(response => {
             //console.log(response.data.content)
             this.moradoresList = response.data.content
             this.numeroPaginas =  Math.ceil(this.moradoresList.length / this.itemsPerPage);
-            console.log(this.numeroPaginas);
         });
     },
     methods: {
         deletarMorador(id) {
             console.log(id)
             if (confirm("Você tem certeza que deseja exluir este morador?")){
-                api.delete('http://localhost:8080/parking-spot/'+id)
+                api.delete(''+id)
                     .then(response => {
-                        console.log(response)
-                    });
-                location.reload();
+                        alert('Usuário excluido com sucesso!');
+                        location.reload()
 
+                    })
+                    .catch(error => {
+                        console.error(error.code);
+                        if (error.message === 'Request failed with status code 403'){
+                            alert('Acesso negado. Autenticação ou autorização insuficientes.');
+                        }else{
+                            alert(error.message);
+                        }
+
+                    });
+                //location.reload();
             }
 
         },

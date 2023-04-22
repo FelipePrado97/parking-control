@@ -4,10 +4,11 @@ import router from './router'
 
 import './assets/main.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
-
+import { VueMaskDirective } from 'vue-the-mask'
+import VueTheMask from 'vue-the-mask'
 
 const app = createApp(App)
-app.use(router,bootstrap)
-
+app.directive('mask', VueMaskDirective);
+app.use(router);
+app.use(VueTheMask);
 app.mount('#app')

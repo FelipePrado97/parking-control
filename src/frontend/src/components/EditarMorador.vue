@@ -10,9 +10,9 @@
             </div>
             <label><b>Dados do Apartamento</b></label>
             <div class="form-group mb-2">
-                <input type="text" class="form-control" placeholder="Apartamento:" v-model="moradorList.apartment" >
-                <input type="text" class="form-control" placeholder="Bloco:" v-model="moradorList.block" >
-                <input type="text" class="form-control" placeholder="Vaga" v-model="moradorList.parkingSpotNumber" >
+                <input type="text" class="form-control" placeholder="Apartamento:" v-mask="'###'" v-model="moradorList.apartment" >
+                <input type="text" class="form-control" placeholder="Bloco:" v-mask="'A'" v-model="moradorList.block" >
+                <input type="text" class="form-control" placeholder="Vaga" :value="combinacao" disabled>
             </div>
             <label><b>Dados do Veículo</b></label>
             <div class="form-group mb-2">
@@ -40,6 +40,11 @@ export default {
             }
 
     },
+    computed:{
+        combinacao(){
+            return this.formData.parkingSpotNumber = this.formData.apartment + this.formData.block;
+        }
+    },
     mounted() {
         //console.log(this.$route.params)
         api.get(""+this.$route.params.user).then(response => {
@@ -52,7 +57,7 @@ export default {
     methods: {
         editarMorador(moradorList) {
             console.log(this.moradorList)
-            api.put("http://localhost:8080/parking-spot/"+moradorList.id, {
+            api.put(""+moradorList.id, {
                 parkingSpotNumber: moradorList.parkingSpotNumber,
                 licensePlateCar: moradorList.licensePlateCar,
                 brandCar: moradorList.brandCar,

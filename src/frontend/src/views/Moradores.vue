@@ -16,6 +16,7 @@ import AdicionaMoradores from "@/components/AdicionaMoradores.vue";
 import {RouterLink} from "vue-router";
 import EditarMorador from "@/components/EditarMorador.vue";
 
+
 export default {
     name: "moradores",
     components: {
